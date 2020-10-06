@@ -1,0 +1,32 @@
+{
+    "id": "992C6BF1",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1601882364579.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "expression": "ex2",
+        "caption": "ex2",
+        "totalObservations": "10",
+        "displayedObservations": "10",
+        "variables": "1",
+        "cacheKey": "9860253A",
+        "object": "ex2",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=ex2&cache_key=9860253A&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8245914332121625697,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1601882364579,
+    "read_only": false,
+    "read_only_alternatives": []
+}
