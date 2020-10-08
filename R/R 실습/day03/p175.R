@@ -1,0 +1,6 @@
+library(reshape2)
+data(airquality)
+names(airquality) <- toupper(names(airquality))
+m_air <- melt(airquality, id.vars = c("MONTH","DAY"), na.rm = T)
+names(m_air) <- toupper(names(m_air))
+a_air <- acast(m_air, MONTH ~ VARIABLE, mean)
