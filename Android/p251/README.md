@@ -23,3 +23,17 @@
 ![캡쳐](https://user-images.githubusercontent.com/24764210/95992732-3f393200-0e69-11eb-98c7-9b3ae333b0fc.png) 
 
 ![캡처](https://user-images.githubusercontent.com/24764210/95993076-9d661500-0e69-11eb-91f1-fa5c5c2529b8.png) 
+
+![캡처](https://user-images.githubusercontent.com/24764210/96002031-a52ab700-0e73-11eb-93b2-4d4ba3e2c36f.png) 
+
+< BUTTON1 실행 시 >
+
+![캡처](https://user-images.githubusercontent.com/24764210/96002175-cd1a1a80-0e73-11eb-8d36-bcff6e4f1c5a.png) 
+
+< BUTTON2 실행 시 >
+
+![캡처](https://user-images.githubusercontent.com/24764210/96002420-0d799880-0e74-11eb-9d2f-689969beb36e.png) 
+
+< BUTTON3 실행 시 >
+
+- 전화 걸기 이벤트 실행
