@@ -23,8 +23,12 @@ public class ThirdActivity extends AppCompatActivity {
 
         // permission 배열 안에 있는 요청들을 처리
         // requestCode: 101은 지정된 것
-        //String[] permissions = {};
-        //ActivityCompat.requestPermissions(this, permissions, 101);
+        String permissions [] = {
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.RECEIVE_SMS
+        };
+        ActivityCompat.requestPermissions(this, permissions, 101);
     }
 
     public void ckbt(View v){

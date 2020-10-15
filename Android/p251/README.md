@@ -20,9 +20,18 @@
 
 ## 실행화면
 
+- 첫 번째 화면
+
 ![캡쳐](https://user-images.githubusercontent.com/24764210/95992732-3f393200-0e69-11eb-98c7-9b3ae333b0fc.png) 
 
+- 두 번째 화면
+
 ![캡처](https://user-images.githubusercontent.com/24764210/95993076-9d661500-0e69-11eb-91f1-fa5c5c2529b8.png) 
+
+- 세 번째 화면
+- 전화걸기 권한 허용창
+
+![캡처](https://user-images.githubusercontent.com/24764210/96137688-e5536d80-0f37-11eb-80f4-b56b214633f3.png) 
 
 ![캡처](https://user-images.githubusercontent.com/24764210/96002031-a52ab700-0e73-11eb-93b2-4d4ba3e2c36f.png) 
 
@@ -37,3 +46,5 @@
 < BUTTON3 실행 시 >
 
 - 전화 걸기 이벤트 실행
+
+![캡처](https://user-images.githubusercontent.com/24764210/96138094-63b00f80-0f38-11eb-8e67-65dc3c253da4.png) 
