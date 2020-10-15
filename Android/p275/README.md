@@ -1,16 +1,11 @@
 # p275 실습
 
-- onCreate()
-
-- onStart()
-
-- onPause()
-
-- onResume()
-
-- onStop()
-
-- onDestroy()
-
+- onCreate() : 액티비티가 처음에 만들어졌을 때 호출
+- onStart() : 액티비티가 화면에 보이기 바로 전에 호출
+- onResume() : 액티비티가 사용자와 상호작용하기 바로 전에 호출
+- onRestart() : 액티비티가 중지된 이후에 호출. 다시 시작되기 바로 전에 호출
+- onPause() : 또 다른 액티비티를 시작하려고 할 때 호출
+- onStop() : 액티비티가 사용자에게 더 이상 보이지 않을 때 호출
+- onDestroy() : 액티비티가 소멸되어 없어지기 전에 호출
 - 앱 실행 도중, stop 또는 destroy가 일어날 때 정보를 임시로 저장하는 이벤트
 - 앱 실행 도중, stop 또는 destroy가 일어날 때 임시로 저장한 데이터 복구하는 이벤트
