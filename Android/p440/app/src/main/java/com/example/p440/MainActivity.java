@@ -72,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         count = findViewById(R.id.count);
 
-        final PersonAdapter personAdapter = new PersonAdapter(persons);
-        listView.setAdapter(personAdapter);
-        count.setText(personAdapter.getCount()+"명");
+
 
 
         // 등록
@@ -158,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
     public void setList(final ArrayList<Person> persons){
         final PersonAdapter personAdapter = new PersonAdapter(persons);
         listView.setAdapter(personAdapter);
+        count.setText(personAdapter.getCount()+"명");
 
         // 달력 이벤트 생성
         birth.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Person p = new Person(et_name.getText().toString(), birth.getText().toString(), et_phone.getText().toString());
                 persons.add(p);
+                et_name.setText("");
+                birth.setText("");
+                et_phone.setText("");
                 personAdapter.notifyDataSetChanged();
                 count.setText(personAdapter.getCount()+"명");
             }
@@ -211,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
                 // Alert 창에 이름 표시
-                builder.setMessage("삭제하시겠습니까 ..?"); // 리스트 아이템 이름 출력
+                builder.setMessage(persons.get(position).getName()+"님을 삭제하시겠습니까 ..?"); // 리스트 아이템 이름 출력
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
