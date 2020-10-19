@@ -29,6 +29,22 @@
 
 - 로그인 실패 시, AlertDialog 띄우기
 
+- permission 추가
+
+   ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.example.r500">
+  	
+      <!-- 추가 -->
+      <uses-permission android:name="android.permission.INTERNET" />
+  
+      <!-- 마지막 줄 추가 -->
+      <application
+          ~~~ 
+          android:usesCleartextTraffic="true">
+   ```
+
 ## 실행화면
 
 - 메인
