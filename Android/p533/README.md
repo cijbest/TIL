@@ -19,13 +19,14 @@
   %>
   ```
 
+- 리스트 클릭 시 띄워지는 AlertDialog에 이미지 삽입
+  - 스레드 이용 (서버에 있는 이미지를 불러오기 위함)
+  - 기존 GetImg(스레드) 내부 클래스를 외부로 빼냄
+
 ## 실행화면
 
 ![캡처](https://user-images.githubusercontent.com/24764210/96461829-d2a2a680-125f-11eb-8545-05b79b457760.png) 
 
 ![캡처](https://user-images.githubusercontent.com/24764210/96461911-ecdc8480-125f-11eb-8020-4a58aaab5e6e.png) 
 
-![캡처](https://user-images.githubusercontent.com/24764210/96462013-08e02600-1260-11eb-8892-32273534df98.png) 
-
-
-
+![제목 없음](https://user-images.githubusercontent.com/24764210/96526780-884e1380-12b9-11eb-9297-1ddaa7ce17dc.png) 

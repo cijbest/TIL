@@ -129,6 +129,17 @@ public class SecondActivity extends AppCompatActivity {
                             "누적관객수 : " + list.get(position).getAudiAcc() + "명\n" +
                             "누적매출액 : " + list.get(position).getSalesAcc() + "원"); // 리스트 아이템 이름 출력
 
+                    // 이미지 삽입(스레드 사용 : 서버에 있는 사진 받아옴)
+                    final String url = "http://172.30.1.27/android/img/";
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View dview = layoutInflater.inflate(R.layout.dlayout, (ViewGroup) findViewById(R.id.dlayout));
+                    ImageView dimg = dview.findViewById(R.id.imageView2);
+
+                    GetImg t3 = new GetImg(list.get(position).getImg(), url, dimg);
+                    t3.start();
+
+                    builder.setView(dview);
+                    
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
@@ -180,37 +191,38 @@ public class SecondActivity extends AppCompatActivity {
         }
 
 
-        class GetImg extends Thread{
-            String img;
-            String url;
-            ImageView imageview;
-            public GetImg(String img, String url, ImageView imageView){
-                this.img = img;
-                this.url = url;
-                this.imageview = imageView;
-            }
 
-            @Override
-            public void run() {
-                URL httpurl = null;
-                InputStream is = null;
+    } // end Adapter
+    class GetImg extends Thread{
+        String img;
+        String url;
+        ImageView imageview;
+        public GetImg(String img, String url, ImageView imageView){
+            this.img = img;
+            this.url = url;
+            this.imageview = imageView;
+        }
 
-                try {
-                    httpurl = new URL(url+img);
-                    is = httpurl.openStream();
-                    final Bitmap bm = BitmapFactory.decodeStream(is);
+        @Override
+        public void run() {
+            URL httpurl = null;
+            InputStream is = null;
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imageview.setImageBitmap(bm);
-                        }
-                    });
+            try {
+                httpurl = new URL(url+img);
+                is = httpurl.openStream();
+                final Bitmap bm = BitmapFactory.decodeStream(is);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageview.setImageBitmap(bm);
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-    } // end Adapter
+    }
 }
