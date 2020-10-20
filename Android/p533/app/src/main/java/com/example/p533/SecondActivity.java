@@ -24,6 +24,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -176,17 +177,32 @@ public class SecondActivity extends AppCompatActivity {
             TextView rank = itemView.findViewById(R.id.textView2);
             TextView movieNm = itemView.findViewById(R.id.textView3);
 
+            // 영화 정보 출력
             movieCd.setText("[ 영화 코드 : " + list.get(position).getMovieCd() + " ] ");
             rank.setText("- 현재 상영 " + list.get(position).getRank() + "위 -");
             movieNm.setText(list.get(position).getMovieNm());
 
+            // 영화 포스터 이미지 설정
             final ImageView imageView = itemView.findViewById(R.id.imageView);
-
             String img = list.get(position).getImg();
             final String url = "http://172.30.1.27/android/img/";
-
             GetImg t1 = new GetImg(img, url, imageView);
             t1.start();
+
+            // rank 이미지 설정
+            ImageView imageView2 = itemView.findViewById(R.id.imageView3);
+            String rankimg = "";
+            if (list.get(position).getRank().equals("1")){
+                rankimg = "1.jpg";
+            }else if(list.get(position).getRank().equals("2")){
+                rankimg = "2.jpg";
+            }else if(list.get(position).getRank().equals("3")){
+                rankimg = "3.jpg";
+            }
+
+            GetImg r1 = new GetImg(rankimg, url, imageView2);
+            r1.start();
+
             return itemView;
         }
 
