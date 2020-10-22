@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "778735259716",
+    "firebase_url": "https://androidws-23846.firebaseio.com",
+    "project_id": "androidws-23846",
+    "storage_bucket": "androidws-23846.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778735259716:android:b6d567e8b6495675206c11",
+        "android_client_info": {
+          "package_name": "com.example.ws"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778735259716-0kd773a5mvd4pmbem356t81dtd5chj5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5DebT8QvQod0WUlMDw1U2jcfKf-B19s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778735259716-0kd773a5mvd4pmbem356t81dtd5chj5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

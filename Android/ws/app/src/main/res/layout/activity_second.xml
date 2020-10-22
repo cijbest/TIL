@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#93110A"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center"
+        android:text="LOGIN"
+        android:textColor="#D5D5D5"
+        android:textSize="36sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="189dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/tx_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D5D5D5"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="id01"
+            android:textColor="#D5D5D5"
+            android:textColorHint="#D5D5D5"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/tx_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D5D5D5"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="pwd01"
+            android:textColor="#D5D5D5"
+            android:textColorHint="#D5D5D5"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffb20a"
+            android:onClick="ck"
+            android:text="login" />
+    </LinearLayout>
+
+</LinearLayout>
