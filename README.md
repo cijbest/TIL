@@ -13,6 +13,8 @@
 
 🗃 [코드업 기초 100제](https://github.com/cijbest/TIL/tree/master/Algorithm)
 
+🗃 [파이썬 스터디](https://github.com/cijbest/TIL/tree/master/Algorithm/PythonAlgorithm)
+
 ### 🏷 Linux
 
 🗃 [01_리눅스 정리](https://github.com/cijbest/TIL/blob/master/Linux/01_%EB%A6%AC%EB%88%85%EC%8A%A4.md) 
