@@ -35,11 +35,17 @@
 
 ### 🏷 Git 특강
 
-
-
 ---
 
 ### 🏷 R
 
 🗃 [01_R 정리](https://github.com/cijbest/TIL/blob/master/R/01_R.md) 
+
+
+
+---
+
+### 🏷 Android
+
+🗃 [안드로이드 정리](https://github.com/cijbest/TIL/tree/master/Android) 
 
