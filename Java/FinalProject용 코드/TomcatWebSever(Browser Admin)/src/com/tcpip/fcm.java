@@ -2,47 +2,28 @@ package com.tcpip;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.chat.Client;
+@WebServlet("/fcm")
+public class fcm extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-@Controller
-public class MainController {
-	Client client;
-	
-	public MainController() {
-		client = new Client("13.124.204.170", 5555, "[WEB]");
-		try {
-			client.connect();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public fcm() {
+		super();
 	}
-	
-	
-	
-	@RequestMapping("/main.mc")
-	public ModelAndView main() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
-		return mv;
-	}
-	
-	@RequestMapping("/iot.mc")
-	public void iot(HttpServletResponse res) throws IOException {
-		System.out.println("IoT Send Start ...");
-		client.sendTarget("/172.30.1.16","100");
-		
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		URL url = null;
 		try {
 			url = new URL("https://fcm.googleapis.com/fcm/send");
@@ -64,7 +45,7 @@ public class MainController {
 
 		// set my firebase server key
 		conn.setRequestProperty("Authorization", "key="
-				+ "AAAAXsC9rSI:APA91bErxOelV8P8C02sDT8-fRifuKxoRcw7KXhyLteJqIpFB7n3Vm4hOKIA_tbNP-8e15_4tGN3cZFKIqN7I1JcbpBl6-wc1Wbn4w97ONfI0IMeSkrRoauqg8lOUcuH0PfxfJbjLrbN"); 
+				+ "AAAAXsC9rSI:APA91bErxOelV8P8C02sDT8-fRifuKxoRcw7KXhyLteJqIpFB7n3Vm4hOKIA_tbNP-8e15_4tGN3cZFKIqN7I1JcbpBl6-wc1Wbn4w97ONfI0IMeSkrRoauqg8lOUcuH0PfxfJbjLrbN");
 
 		// create notification message into JSON format
 		JSONObject message = new JSONObject();
@@ -74,12 +55,11 @@ public class MainController {
 		notification.put("title", "이벤트");
 		notification.put("body", "전고객! 50% 영화 할인쿠폰 발송!");
 		message.put("notification", notification);
-		
+
 		JSONObject data = new JSONObject();
 		data.put("control", "control1");
 		data.put("data", 100);
 		message.put("data", data);
-
 
 		try {
 			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
@@ -91,16 +71,8 @@ public class MainController {
 		} catch (IOException e) {
 			System.out.println("Error while writing outputstream to firebase sending to ManageApp | IOException");
 			e.printStackTrace();
-		}	
+		}
 
-		
-		PrintWriter out = res.getWriter();
-		out.print("ok");
-		out.close();
 	}
 
-	@RequestMapping("/phone.mc")
-	public void phone() {
-		System.out.println("Phone Send Start ...");
-	}
 }

@@ -14,7 +14,7 @@
 	<context:component-scan base-package="com.*" />
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
-	<mvc:annotation-driven /> 
+	<mvc:annotation-driven />
 	<tx:annotation-driven transaction-manager="txManager" />
 
 
@@ -34,15 +34,10 @@
 	</bean>
 
 	
+	
+	
+	
+	
 
 
 </beans>
-
-
-
-
-
-
-
-
-
