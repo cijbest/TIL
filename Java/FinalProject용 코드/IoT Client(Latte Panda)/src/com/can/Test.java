@@ -9,7 +9,7 @@ import java.io.IOException;
 import gnu.io.CommPortIdentifier;
 
  
-
+/* Test¿ë ÄÚµå */
 public class Test {
 
  

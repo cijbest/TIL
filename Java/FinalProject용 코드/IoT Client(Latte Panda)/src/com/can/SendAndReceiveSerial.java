@@ -6,6 +6,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Scanner;
 
 import com.chat.Client;
 
@@ -16,7 +17,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
  
-
+/* Serial 통신으로 데이터를 주고 받는 코드 */
 public class SendAndReceiveSerial implements SerialPortEventListener {
 
 	private BufferedInputStream bin;
@@ -100,7 +101,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 				serialPort.notifyOnDataAvailable(true);
 
-				serialPort.setSerialPortParams(921600, // 통신속도
+				serialPort.setSerialPortParams(9600, // 통신속도
 
 						SerialPort.DATABITS_8, // 데이터 비트
 
@@ -168,7 +169,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 		public SerialWriter() {
 
-			//처음에  프로토콜 장비에 추가하겠다.
+			// 프로토콜 장비에 추가하는 시작 문구
 
 			this.data = ":G11A9\r";
 
@@ -254,7 +255,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 	// --------------------------------------------------------
 
-	// 이벤트를 실행하면 얘가 실행된다.
+	// 데이터가 Serial 포트를 통해 들어오면(이벤트 발생) 실행되는 함수
 
 	public void serialEvent(SerialPortEvent event) {
 
@@ -301,9 +302,10 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 				String ss = new String(readBuffer);
 
 				System.out.println("Receive Low Data:" + ss + "||");
-
+				
+				
+				// 서버에 serial data 보냄
 				client.sendTarget("192.168.0.17", ss);
-				//System.out.println("ddd" + ss);
 
 			} catch (Exception e) {
 
@@ -317,15 +319,8 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 	}
 
- 
 
-	
 
- 
-
-	
-
- 
 
 	public void close() throws IOException {
 
@@ -363,21 +358,37 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
  
 
+	// Serial 통로로 데이터를 보내는 함수
+	public void sendIoT(String cmd) {
+		Thread t1 = new Thread(new sendIoT(cmd));
+		t1.start();
+	}
 	
-
+	class sendIoT implements Runnable{
+		String cmd;
+		public sendIoT(String cmd) {
+			this.cmd = cmd;
+		}
+		@Override
+		public void run() {
+			byte[] datas = cmd.getBytes();
+			try {
+				out.write(datas);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
  
 
 	public static void main(String args[]) throws IOException {
 
-		SendAndReceiveSerial ss = new SendAndReceiveSerial("COM10", true);
-
+		SendAndReceiveSerial ss = new SendAndReceiveSerial("COM5", true);
 		
-		ss.sendSerial("W2810003B010000000000005011", "10"
-
-				+ "003B01");
+		//ss.sendIoT();
 		
-
-		//ss.close();
+		
 
  
 

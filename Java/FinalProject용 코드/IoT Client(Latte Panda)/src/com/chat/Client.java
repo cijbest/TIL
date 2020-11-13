@@ -1,17 +1,23 @@
 package com.chat;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.HttpURLConnection;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Set;
 
 import com.msg.Msg;
+
+import gnu.io.CommPort;
+import gnu.io.CommPortIdentifier;
+import gnu.io.NoSuchPortException;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
 
 public class Client {
 
@@ -20,14 +26,208 @@ public class Client {
 	String id;
 	Socket socket;
 	Sender sender;
+	
+	// Serial 통신에 필요한 변수 추가 
+	private BufferedInputStream bin;
 
-	public Client() {
+	private InputStream in;
+
+	private OutputStream out;
+
+	private SerialPort serialPort;
+
+	private CommPortIdentifier portIdentifier;
+
+	private CommPort commPort;
+
+	
+	
+
+	public Client() throws Exception {
+		
+
+
+	}
+	public void connectSerial() throws Exception {
+
+		 
+
+		if (portIdentifier.isCurrentlyOwned()) {
+
+			System.out.println("Error: Port is currently in use");
+
+		} else {
+
+			commPort = portIdentifier.open(this.getClass().getName(), 5000);
+
+			if (commPort instanceof SerialPort) {
+
+				serialPort = (SerialPort) commPort;
+
+//				serialPort.addEventListener(this);
+
+				serialPort.notifyOnDataAvailable(true);
+
+				serialPort.setSerialPortParams(9600, // 통신속도
+
+						SerialPort.DATABITS_8, // 데이터 비트
+
+						SerialPort.STOPBITS_1, // stop 비트
+
+						SerialPort.PARITY_NONE); // 패리티
+
+				in = serialPort.getInputStream();
+
+				bin = new BufferedInputStream(in);
+
+				
+
+				// 밖으로 나가는 스트림 생성
+
+				out = serialPort.getOutputStream();
+
+			} else {
+
+				System.out.println("Error: Only serial ports are handled by this example.");
+
+			}
+
+		}
+
+	}
+	
+	public void serialEvent(SerialPortEvent event) {
+
+		switch (event.getEventType()) {
+
+		case SerialPortEvent.BI:
+
+		case SerialPortEvent.OE:
+
+		case SerialPortEvent.FE:
+
+		case SerialPortEvent.PE:
+
+		case SerialPortEvent.CD:
+
+		case SerialPortEvent.CTS:
+
+		case SerialPortEvent.DSR:
+
+		case SerialPortEvent.RI:
+
+		case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
+
+			break;
+
+		case SerialPortEvent.DATA_AVAILABLE:
+
+			byte[] readBuffer = new byte[128];
+
+ 
+
+			try {
+
+ 
+
+				while (bin.available() > 0) {
+
+					int numBytes = bin.read(readBuffer);
+
+				}
+
+ 
+
+				String ss = new String(readBuffer);
+
+				System.out.println("Receive Low Data:" + ss + "||");
+				
+				
+				
+				
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			}
+
+			break;
+
+		}
+
+	}
+	
+	
+	public void close() throws IOException {
+
+		try {
+
+			Thread.sleep(100);
+
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+
+		}
+
+		if (in != null) {
+
+			in.close();
+
+		}
+
+		if (out != null) {
+
+			out.close();
+
+		}
+
+		if (commPort != null) {
+
+			commPort.close();
+
+		}
+
+ 
+
 	}
 
-	public Client(String address, int port, String id) {
+ 
+
+	
+	public void sendIoT(String cmd) {
+		Thread t1 = new Thread(new sendIoT(cmd));
+		t1.start();
+	}
+	
+	class sendIoT implements Runnable{
+		String cmd;
+		public sendIoT(String cmd) {
+			this.cmd = cmd;
+		}
+		@Override
+		public void run() {
+			byte[] datas = cmd.getBytes();
+			try {
+				out.write(datas);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	// Client 생성 시 Serial 포트 생성
+	public Client(String address, int port, String id) throws Exception {
 		this.address = address;
 		this.port = port;
 		this.id = id;
+		portIdentifier = CommPortIdentifier.getPortIdentifier("COM5");
+
+		System.out.printf("Port Connect : %s\n", "COM5");
+
+		connectSerial();
 	}
 
 	public void connect() throws IOException {
@@ -58,7 +258,7 @@ public class Client {
 	}
 
 	
-	// 메세지를 입력받는다.
+	// 메세지를 입력받음
 	public void sendMsg(String ss) {
 //		Scanner sc = new Scanner(System.in);
 //		while(true){
@@ -99,7 +299,7 @@ public class Client {
 	}
 
 	
-	// 메세지를 보낸다.
+	// 메세지 전송
 	class Sender implements Runnable {
 		Socket socket;
 		ObjectOutputStream oo;
@@ -165,6 +365,9 @@ public class Client {
 						continue;
 					}
 					System.out.println(msg.getId() + msg.getMsg());
+					
+					// mobile client에서 보낸 메세지를 IoT Client로 전송
+					sendIoT(msg.getMsg());
 				} catch(Exception e) {
 					//e.printStackTrace();
 					break;
@@ -186,68 +389,20 @@ public class Client {
 		
 	}
 
-	public static void send() {
-		HttpSender sender = null;
-		while (true) {
-			String urlstr = "http://192.168.0.17/tcpip/view/main.jsp";
-			URL url = null;
-			try {
-				double temp = Math.random() * 20;
-				url = new URL(urlstr + "?temp=" + temp);
-				sender = new HttpSender(temp, url);
-				new Thread(sender).start();
-			} catch (Exception e) {
-//				break;
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	static class HttpSender implements Runnable {
-
-		URL url = null;
-		double temp;
-
-		public HttpSender() {
-		}
-
-		public HttpSender(double temp, URL url) {
-			this.temp = temp;
-			this.url = url;
-		}
-
-		@Override
-		public void run() {
-			HttpURLConnection con = null;
-			try {
-				con = (HttpURLConnection) url.openConnection();
-				con.setReadTimeout(5000);
-				con.setRequestMethod("POST");
-				con.getInputStream();
-				System.out.println("temp:" + temp);
-			} catch (Exception e) {
-
-			} finally {
-				con.disconnect();
-			}
-		}
-
-	}
 	
-//	public static void main(String[] args) {
-//		Client client = new Client("192.168.0.17", 5555, "[Jeong]");
-//		try {
-//			client.connect();
-//			client.sendMsg(null);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		//send();
-//	}
+	
+	public static void main(String[] args) {
+		try {
+			Client client = new Client("192.168.0.17", 5555, "[Jeong]");
+
+			client.connect();
+			//client.sendMsg(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		//send();
+	}
 
 }
