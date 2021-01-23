@@ -35,6 +35,8 @@
 
 ### 🏷 Git 특강
 
+🗃 [Git 정리](https://github.com/cijbest/TIL/tree/master/git)
+
 ---
 
 ### 🏷 R
