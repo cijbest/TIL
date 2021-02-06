@@ -23,6 +23,8 @@
 
 🗃 [03_리눅스 - 하드디스크 관리](https://github.com/cijbest/TIL/blob/master/Linux/03_%EB%A6%AC%EB%88%85%EC%8A%A4%20-%20%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%20%EA%B4%80%EB%A6%AC.md)
 
+🗃 [04_리눅스 - 프로그램 설치](https://github.com/cijbest/TIL/blob/master/Linux/04_%EB%A6%AC%EB%88%85%EC%8A%A4%20-%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%84%A4%EC%B9%98.md)
+
 ---
 
 ### 🏷 Hadoop
