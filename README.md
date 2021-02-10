@@ -63,7 +63,7 @@
 
 ### 🏷 면접
 
-🗃 [스터디](https://github.com/jisicTank)
+🗃 [스터디 (기술스택, CS)](https://github.com/jisicTank)
 
 ---
 
