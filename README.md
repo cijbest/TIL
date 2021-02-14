@@ -67,7 +67,9 @@
 
 ### 🏷 면접
 
-🗃 [스터디 (기술스택, CS)](https://github.com/jisicTank)
+🗃 [기술스택](https://github.com/jisicTank/Skill)
+
+🗃 [CS](https://github.com/jisicTank/CS)
 
 ---
 
