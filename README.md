@@ -25,6 +25,8 @@
 
 🗃 [04_리눅스 - 프로그램 설치](https://github.com/cijbest/TIL/blob/master/Linux/04_%EB%A6%AC%EB%88%85%EC%8A%A4%20-%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%84%A4%EC%B9%98.md)
 
+🗃 [05_리눅스 - war파일 배포 방법](https://github.com/cijbest/TIL/blob/master/Linux/05_%EB%A6%AC%EB%88%85%EC%8A%A4%20-%20war%ED%8C%8C%EC%9D%BC%20%EB%B0%B0%ED%8F%AC%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95.md)
+
 ---
 
 ### 🏷 Hadoop
