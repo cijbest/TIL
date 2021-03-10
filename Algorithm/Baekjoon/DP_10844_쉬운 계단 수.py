@@ -4,6 +4,7 @@ input = sys.stdin.readline
 n = int(input())
 
 dp = [[0] * 10 for _ in range(n + 1)]
+
 # 1 자리수는 0을 제외하고(조거 : 0은 앞에 올 수 없음) 1로 초기화
 for i in range(1,10):
     dp[1][i] = 1
